@@ -1,27 +1,15 @@
 .header {
-    height: 70px;
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: palegoldenrod;
-  
-    .logo-container {
-        width: 100%;
-        padding-left: 50px;
-        .logo {
-            font-size: xx-large;
-        }
-    }
+    padding: 0rem 3rem;
   
     .options {
-      width: 50%;
       display: flex;
-      justify-content: flex-end;
-      padding-right: 50px;
 
       .option {
-        padding: 0px 20px;
+        margin: 0px 20px 0px 20px;
       }
     }
   }

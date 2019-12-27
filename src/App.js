@@ -8,6 +8,8 @@ import './App.scss';
 import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
+import SignupLoginPage from './pages/signuploginpage/signuploginpage.component';
+import { auth } from './firebase/firebase.utils';
 
 const CategoryPage = props => {
   return (
@@ -26,18 +28,46 @@ const MatDetailPage = props => {
   )
 }
 
-function App() {
-  return (
-    <div>
-      <Header />
-      <Switch>
-        <Route exact path='/' component={HomePage} />
-        <Route path='/mats/:matid' component={MatDetailPage} />
-        <Route path='/shop' component={ShopPage} />
-        <Route exact path='/:category' component={CategoryPage} />
-      </Switch>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      currentUser: null
+    };
+  }
+
+  unsubscribeFromAuth = null;
+
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+      this.setState({ currentUser: user });
+
+      console.log(user);
+    })
+  }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
+  render() {
+    return (
+      <div>
+        <Header currentUser={this.state.currentUser} />
+        <div className="body">
+          <Switch>
+            <Route exact path='/' component={HomePage} />
+            <Route path='/mats/:matid' component={MatDetailPage} />
+            <Route path='/shop' component={ShopPage} />
+            <Route path='/signin' component={SignupLoginPage} />
+            <Route exact path='/:category' component={CategoryPage} />
+          </Switch>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
