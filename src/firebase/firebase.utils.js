@@ -3,7 +3,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const config = {
-    apiKey: "AIzaSyALnOFugWLgbM4KygeizLo0_zdyWH6DQ0w",
+    apiKey: process.env.REACT_APP_API_KEY,
     authDomain: "gauravtradersdb.firebaseapp.com",
     databaseURL: "https://gauravtradersdb.firebaseio.com",
     projectId: "gauravtradersdb",
@@ -20,3 +20,5 @@ export const firestore = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
+
+export default firebase;
