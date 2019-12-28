@@ -9,7 +9,7 @@ import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignupLoginPage from './pages/signuploginpage/signuploginpage.component';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 const CategoryPage = props => {
   return (
@@ -41,10 +41,22 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) { // if userAuth exists
+        const userRef = await createUserProfileDocument(userAuth); // then pass userAuth to get back reference
 
-      console.log(user);
+        userRef.onSnapshot(snapShot => { // then set state using snapshop of reference
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+          console.log(this.state);
+        });
+      } else { // else if user signs out, state is set to userAuth which is null
+        this.setState({ currentUser: userAuth });
+      }
     })
   }
 
