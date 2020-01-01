@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Switch, Route, Link } from 'react-router-dom';
+import { connect } from 'react-redux'; // redux
 
 import './App.scss';
 
@@ -9,7 +10,9 @@ import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignupLoginPage from './pages/signuploginpage/signuploginpage.component';
+
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { setCurrentUser } from './redux/user/user.actions';  // redux
 
 const CategoryPage = props => {
   return (
@@ -30,32 +33,25 @@ const MatDetailPage = props => {
 
 class App extends React.Component {
 
-  constructor() {
-    super();
-
-    this.state = {
-      currentUser: null
-    };
-  }
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+
+    const { setCurrentUser } = this.props; // redux
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) { // if userAuth exists
         const userRef = await createUserProfileDocument(userAuth); // then pass userAuth to get back reference
 
         userRef.onSnapshot(snapShot => { // then set state using snapshop of reference
-          this.setState({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data()
-            }
+          setCurrentUser({ // redux
+            id: snapShot.id,
+            ...snapShot.data()
           });
           console.log(this.state);
         });
       } else { // else if user signs out, state is set to userAuth which is null
-        this.setState({ currentUser: userAuth });
+        setCurrentUser(userAuth);
       }
     })
   }
@@ -67,7 +63,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header currentUser={this.state.currentUser} />
+        <Header />
         <div className="body">
           <Switch>
             <Route exact path='/' component={HomePage} />
@@ -82,4 +78,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => (
+  {
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+  }
+)
+
+export default connect(null, mapDispatchToProps)(App);
