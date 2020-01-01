@@ -7,8 +7,6 @@ import CustomButton from '../custom-button/custom-button.component';
 
 import { auth } from '../../firebase/firebase.utils';
 
-import { withRouter } from 'react-router-dom';
-
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
@@ -27,8 +25,6 @@ class SignIn extends React.Component {
         try {
             await auth.signInWithEmailAndPassword(email, password);
             this.setState({ email: "", password: "" });
-            this.props.history.push('/'); // this.props.history is used by including withRouter and passing Component through it at the end.
-
         } catch (error) {
             console.error(error);
         }
@@ -54,4 +50,4 @@ class SignIn extends React.Component {
     }
 }
 
-export default withRouter(SignIn);
+export default SignIn;
