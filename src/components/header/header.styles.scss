@@ -1,16 +1,36 @@
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: palegoldenrod;
-    padding: 0rem 3rem;
-  
-    .options {
-      display: flex;
+@mixin horizontally-center {
+  display: flex;
+  align-items: center;
+}
 
-      .option {
-        margin: 0px 20px 0px 20px;
-      }
+@mixin marginlr20px {
+  margin: 0px 20px 0px 20px;
+}
+
+.header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: palegoldenrod;
+  padding: 0rem 3rem;
+  border-bottom: 1px solid lightgray;
+
+  .logo-container {
+    @include horizontally-center;
+
+    .logo {
+      @include marginlr20px;
+      font-size: small;
     }
   }
+
+  .options {
+    @include horizontally-center;
+
+    .option {
+      @include marginlr20px;
+    }
+  }
+}
   

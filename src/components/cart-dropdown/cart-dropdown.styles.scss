@@ -1,0 +1,28 @@
+@mixin column-flex { // so that items flow vertically
+  display: flex;
+  flex-direction: column;
+}
+.cart-dropdown {
+  background-color: palegoldenrod;
+  position: absolute;
+  width: 240px;
+  height: 340px;
+  @include column-flex;
+  padding: 20px;
+  border: 1px solid lightgray;
+  border-radius: 0 0 0.5rem 0.5rem;
+  top: 50px;
+  right: 50px;
+  z-index: 5;
+
+  .cart-items {
+    height: 240px;
+    @include column-flex;
+    overflow-y : auto; // to show scroll if required
+  }
+
+  button {
+    margin-top: auto; // so that it stays at bottom always
+  }
+}
+  
