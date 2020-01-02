@@ -26,4 +26,16 @@
             transition: 200ms ease all;
         }
     }
+
+    &.inverted {
+        background-color: maroon;
+        color: white;
+    
+        &:hover {
+            background-color: white;
+            color: maroon;
+            border: 1px solid maroon;
+            transition: 200ms ease all;
+        }
+    }
 }

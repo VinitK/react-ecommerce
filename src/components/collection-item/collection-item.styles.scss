@@ -4,20 +4,45 @@
     flex-direction: column;
     height: 350px;
     align-items: center;
+    position: relative;
+    background-color: palegoldenrod;
+    border-radius: 0.5rem;
   
     .image {
         width: 100%;
-        height: 95%;
+        height: 90%;
         background-size: cover;
         background-position: center;
     }
+
+    .custom-button {
+        width: 80%;
+        position: absolute;
+        bottom: 50px;
+        display: none;
+    }
   
     .collection-footer {
-        width: 100%;
-        height: 5%;
+        width: 95%;
         display: flex;
         justify-content: space-between;
         font-size: large;
-        margin: 5px 0px 5px 0px;
+        margin: auto;
+        color: maroon;
     }
-}  
+
+    &:hover {
+        .image {
+            filter: brightness(70%);
+        }
+
+        .custom-button {
+            display: flex;
+            justify-content: center;
+        }
+
+        .collection-footer {
+            opacity: 0.9;
+        }
+    }
+}

@@ -10,10 +10,11 @@
   @include column-flex;
   padding: 20px;
   border: 1px solid lightgray;
+  border-top: none;
   border-radius: 0 0 0.5rem 0.5rem;
   top: 50px;
   right: 50px;
-  z-index: 5;
+  z-index: 1;
 
   .cart-items {
     height: 240px;
