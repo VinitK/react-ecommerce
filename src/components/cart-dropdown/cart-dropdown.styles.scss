@@ -3,18 +3,18 @@
   flex-direction: column;
 }
 .cart-dropdown {
-  background-color: palegoldenrod;
+  background-color: white;
   position: absolute;
-  width: 240px;
-  height: 340px;
+  width: 280px;
+  max-height: 340px;
   @include column-flex;
   padding: 20px;
   border: 1px solid lightgray;
-  border-top: none;
-  border-radius: 0 0 0.5rem 0.5rem;
+  border-radius: 0.5rem;
   top: 50px;
   right: 50px;
   z-index: 1;
+  text-align: center;
 
   .cart-items {
     height: 240px;
@@ -23,7 +23,7 @@
   }
 
   button {
-    margin-top: auto; // so that it stays at bottom always
+    margin: auto; // so that it stays at bottom always
   }
 }
   

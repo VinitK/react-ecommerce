@@ -1,8 +1,10 @@
+// REACT
 import React from 'react';
-
-import { Switch, Route, Link, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'; // redux
+import { createStructuredSelector } from 'reselect';
 
+// CSS
 import './App.scss';
 
 // COMPONENTS
@@ -10,26 +12,14 @@ import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignupLoginPage from './pages/signuploginpage/signuploginpage.component';
+import CheckoutPage from './pages/checkoutpage/checkoutpage.component';
 
+// AUTH
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+
+// REDUX
+import { selectCurrentUser } from './redux/user/user.selectors';
 import { setCurrentUser } from './redux/user/user.actions';  // redux
-
-const CategoryPage = props => {
-  return (
-    <div>
-      <h1 className="page-title">{props.match.params.category.toUpperCase()}</h1>
-      <Link to="/"><button>Home</button></Link>
-    </div>
-  );
-}
-
-const MatDetailPage = props => {
-  return (
-    <div>
-      <h1 className="page-title">{props.match.params.matid.split("-").join(" ").toUpperCase()}</h1>
-    </div>
-  )
-}
 
 class App extends React.Component {
 
@@ -67,10 +57,9 @@ class App extends React.Component {
         <div className="body">
           <Switch>
             <Route exact path='/' component={HomePage} />
-            <Route path='/mats/:matid' component={MatDetailPage} />
             <Route path='/shop' component={ShopPage} />
             <Route path='/signin' render={() => this.props.currentUser ? (<Redirect to='/' />) : (<SignupLoginPage />)} />
-            <Route exact path='/:category' component={CategoryPage} />
+            <Route exact path='/checkout' component={CheckoutPage} />
           </Switch>
         </div>
       </div>
@@ -78,9 +67,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => (
+const mapStateToProps = createStructuredSelector(
   {
-    currentUser: user.currentUser
+    currentUser: selectCurrentUser
   }
 )
 

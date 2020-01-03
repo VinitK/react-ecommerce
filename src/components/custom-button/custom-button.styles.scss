@@ -1,16 +1,19 @@
+$main-color: darkcyan;
+
 .custom-button {
+    margin: 10px 0;
     width: 100%;
     padding: 1rem 2rem;
     background-color: white;
-    color: maroon;
-    border: 1px solid maroon;
+    color: $main-color;
+    border: 1px solid $main-color;
     text-transform: uppercase;
     font-weight: bolder;
     border-radius: 0.3rem;
     cursor: pointer;
   
     &:hover {
-        background-color: maroon;
+        background-color: $main-color;
         color: white;
         transition: 200ms ease all;
     }
@@ -28,13 +31,13 @@
     }
 
     &.inverted {
-        background-color: maroon;
+        background-color: $main-color;
         color: white;
     
         &:hover {
             background-color: white;
-            color: maroon;
-            border: 1px solid maroon;
+            color: $main-color;
+            border: 1px solid $main-color;
             transition: 200ms ease all;
         }
     }
