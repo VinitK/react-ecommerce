@@ -1,5 +1,5 @@
-const SHOP_DATA = [
-    {
+const SHOP_DATA = {
+    mats: {
         id: 36,
         title: 'Mats',
         routeName: 'mats',
@@ -60,7 +60,7 @@ const SHOP_DATA = [
             }
         ]
     },
-    {
+    brooms: {
         id: 37,
         title: 'Brooms',
         routeName: 'brooms',
@@ -115,7 +115,7 @@ const SHOP_DATA = [
             }
         ]
     },
-    {
+    mops: {
         id: 38,
         title: 'Mops',
         routeName: 'mops',
@@ -152,7 +152,7 @@ const SHOP_DATA = [
             }
         ]
     },
-    {
+    turfs: {
         id: 39,
         title: 'Turfs',
         routeName: 'turfs',
@@ -201,7 +201,7 @@ const SHOP_DATA = [
             }
         ]
     },
-    {
+    brushes: {
         id: 40,
         title: 'Brushes',
         routeName: 'brushes',
@@ -244,6 +244,6 @@ const SHOP_DATA = [
             }
         ]
     }
-]
+}
 
 export default SHOP_DATA;

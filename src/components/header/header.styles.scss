@@ -3,10 +3,6 @@
   align-items: center;
 }
 
-@mixin paddinglr20px {
-  padding: 0px 20px 0px 20px;
-}
-
 .header {
   width: 100%;
   height: 50px;
@@ -26,7 +22,6 @@
     @include horizontally-center;
 
     .logo {
-      @include paddinglr20px;
       font-size: small;
     }
 
@@ -39,7 +34,7 @@
     @include horizontally-center;
 
     .option {
-      @include paddinglr20px;
+      padding: 0px 20px;
       
       &:hover {
         opacity: 0.8;
