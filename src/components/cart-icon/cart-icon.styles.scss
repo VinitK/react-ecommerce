@@ -13,9 +13,13 @@
   
     .item-count {
       position: absolute;
-      font-size: 15px;
+      font-size: 12px;
       bottom: 11px;
-      color: darkcyan;
+      color: magenta;
+      
+      &:hover {
+        color: darkcyan;
+      }
     }
   }
   

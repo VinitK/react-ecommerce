@@ -31,7 +31,10 @@ const CartDropdown = ({ cartItems, history, dispatch }) => (
                 <div>
                     <p className='empty-message'>Your cart is empty!</p>
                     <div className="marginadd">
-                        <CustomButton inverted onClick={() => history.push('/shop')}>SHOP NOW</CustomButton>
+                        <CustomButton inverted onClick={() => {
+                            history.push('/shop');
+                            dispatch(toggleCartHidden());
+                        }}>SHOP NOW</CustomButton>
                     </div>
                 </div>
         }

@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0rem 3rem;
-  background-color: white;
+  background-image: linear-gradient(white 80%, #f3f3f3);
 
   &.navbar {
     z-index: 1;
@@ -23,10 +23,11 @@
 
     .logo {
       font-size: small;
-    }
+      color: darkcyan;
 
-    &:hover {
-      opacity: 0.8;
+      &:hover {
+        color: magenta;
+      }
     }
   }
 
@@ -36,8 +37,10 @@
     .option {
       padding: 0px 20px;
       
-      &:hover {
-        opacity: 0.8;
+      a {
+        &:hover {
+          color: magenta;
+        }
       }
     }
   }

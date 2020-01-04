@@ -5,10 +5,11 @@ import { withRouter } from 'react-router-dom';
 
 import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selectors';
 
-import CheckoutItem from '../../components/checkout-item/checkout-item.component';
-
 import './checkoutpage.styles.scss';
+
 import CustomButton from '../../components/custom-button/custom-button.component';
+import CheckoutItem from '../../components/checkout-item/checkout-item.component';
+import StripeCheckoutButton from '../../components/stripe-checkout-button/stripe-checkout-button.component';
 
 const CheckoutPage = ({ cartItems, cartTotal, history }) => {
     const HEADER_TITLES = ['product', 'particular', 'quantity', 'price', 'remove'];
@@ -27,7 +28,12 @@ const CheckoutPage = ({ cartItems, cartTotal, history }) => {
                         {cartItems.map(cartItem => (
                             <CheckoutItem key={cartItem.id} cartItem={cartItem} />
                         ))}
-                        <span className="total">Total: ₹{cartTotal}</span>
+                        <div className="total">
+                            Total: ₹{cartTotal}
+                        </div>
+                        <div className="pay-button">
+                            <StripeCheckoutButton price={cartTotal} />
+                        </div>
                     </div>
                 ) : (
                     <div>
